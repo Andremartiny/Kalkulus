@@ -29,12 +29,7 @@ export function pageResources(
   const contentIndexScript = `const fetchData = fetch("${contentIndexPath}").then(data => data.json())`
 
   return {
-    css: [
-      {
-        content: joinSegments(baseDir, "index.css"),
-      },
-      ...staticResources.css,
-    ],
+    css: [joinSegments(baseDir, "index.css"), ...staticResources.css],
     js: [
       {
         src: joinSegments(baseDir, "prescript.js"),
@@ -98,14 +93,14 @@ export function renderPage(
 
             node.children = [
               normalizeHastElement(blockNode, slug, transcludeTarget),
-              {
-                type: "element",
-                tagName: "a",
-                properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
-                children: [
-                  { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
-                ],
-              },
+              // { FIXME FJERNA FOR Å IKKE LENKE TILBAKE TIL ORIGONAL
+              //   type: "element",
+              //   tagName: "a",
+              //   properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
+              //   children: [
+              //     { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
+              //   ],
+              // },
             ]
           }
         } else if (blockRef?.startsWith("#") && page.htmlAst) {
@@ -141,44 +136,44 @@ export function renderPage(
             ...(page.htmlAst.children.slice(startIdx, endIdx) as ElementContent[]).map((child) =>
               normalizeHastElement(child as Element, slug, transcludeTarget),
             ),
-            {
-              type: "element",
-              tagName: "a",
-              properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
-              children: [
-                { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
-              ],
-            },
+            // { FIXME FJERNA FOR Å IKKE LENKE TILBAKE TIL ORIGONAL
+            //   type: "element",
+            //   tagName: "a",
+            //   properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
+            //   children: [
+            //     { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
+            //   ],
+            // },
           ]
         } else if (page.htmlAst) {
           // page transclude
           node.children = [
-            {
-              type: "element",
-              tagName: "h1",
-              properties: {},
-              children: [
-                {
-                  type: "text",
-                  value:
-                    page.frontmatter?.title ??
-                    i18n(cfg.locale).components.transcludes.transcludeOf({
-                      targetSlug: page.slug!,
-                    }),
-                },
-              ],
-            },
+            // { FIXME HER HAR ANDRE FJERNA FOR Å IKKE INKLUDERE TITTEL I EMBEDDA NOTATER
+            //   type: "element",
+            //   tagName: "h1",
+            //   properties: {},
+            //   children: [
+            //     {
+            //       type: "text",
+            //       value:
+            //         page.frontmatter?.title ??
+            //         i18n(cfg.locale).components.transcludes.transcludeOf({
+            //           targetSlug: page.slug!,
+            //         }),
+            //     },
+            //   ],
+            // },
             ...(page.htmlAst.children as ElementContent[]).map((child) =>
               normalizeHastElement(child as Element, slug, transcludeTarget),
             ),
-            {
-              type: "element",
-              tagName: "a",
-              properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
-              children: [
-                { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
-              ],
-            },
+            // { FIXME HER HAR ANDRE FJERNA FOR Å IKKE LENKE TILBAKE
+            //   type: "element",
+            //   tagName: "a",
+            //   properties: { href: inner.properties?.href, class: ["internal", "transclude-src"] },
+            //   children: [
+            //     { type: "text", value: i18n(cfg.locale).components.transcludes.linkToOriginal },
+            //   ],
+            // },
           ]
         }
       }
@@ -247,8 +242,8 @@ export function renderPage(
               </div>
             </div>
             {RightComponent}
-            <Footer {...componentData} />
           </Body>
+          <Footer {...componentData} />
         </div>
       </body>
       {pageResources.js
