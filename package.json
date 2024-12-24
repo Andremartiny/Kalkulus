@@ -81,6 +81,7 @@
     "remark-smartypants": "^3.0.2",
     "rfdc": "^1.4.1",
     "rimraf": "^5.0.7",
+    "satori": "^0.12.0",
     "serve-handler": "^6.1.5",
     "shiki": "^1.10.3",
     "source-map-support": "^0.5.21",
@@ -91,7 +92,9 @@
     "vfile": "^6.0.1",
     "workerpool": "^9.1.2",
     "ws": "^8.18.0",
-    "yargs": "^17.7.2"
+    "yargs": "^17.7.2",
+  "quartz": "^4.2.4",
+  "esbuild": "^0.19.0"
   },
   "devDependencies": {
     "@types/cli-spinner": "^0.2.3",
