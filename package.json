@@ -6,10 +6,10 @@
   "type": "module",
   "author": "André Martiny",
   "license": "MIT",
-  "homepage": "https://github.com//MA-183",
+  "homepage": "https://andremartiny.github.io/Kalkulus/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MA-183/MA-183"
+    "url": "https://github.com/andremartiny/Kalkulus/"
   },
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
